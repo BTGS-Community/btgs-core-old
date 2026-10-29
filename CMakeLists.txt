@@ -29,7 +29,7 @@ get_directory_property(precious_variables CACHE_VARIABLES)
 set(CLIENT_NAME "Bitcoin Gold BTGS Core")
 set(CLIENT_VERSION_MAJOR 30)
 set(CLIENT_VERSION_MINOR 2)
-set(CLIENT_VERSION_BUILD 3)
+set(CLIENT_VERSION_BUILD 4)
 set(CLIENT_VERSION_RC 0)
 set(CLIENT_VERSION_IS_RELEASE "true")
 set(COPYRIGHT_YEAR "2026")
@@ -53,7 +53,7 @@ set(CMAKE_TRY_COMPILE_PLATFORM_VARIABLES
 project(BitcoinGoldBTGSCore
   VERSION ${CLIENT_VERSION_MAJOR}.${CLIENT_VERSION_MINOR}.${CLIENT_VERSION_BUILD}
   DESCRIPTION "Bitcoin Gold BTGS client software"
-  HOMEPAGE_URL "https://bitcoingold.site/"
+  HOMEPAGE_URL "https://bitcoingoldbtgs.com/"
   LANGUAGES NONE
 )
 
@@ -64,7 +64,7 @@ endif()
 
 set(COPYRIGHT_HOLDERS "The %s developers")
 set(COPYRIGHT_HOLDERS_FINAL "The ${CLIENT_NAME} developers")
-set(CLIENT_BUGREPORT "https://github.com/BTGSCOINDEV/BTGS/issues")
+set(CLIENT_BUGREPORT "https://github.com/BTGS-Community/btgs-core-old/issues")
 
 #=============================
 # Language setup

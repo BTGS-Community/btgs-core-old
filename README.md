@@ -1,97 +1,64 @@
-#  Bitcoin Gold BTGS (BTGS Core)
+# Bitcoin Gold BTGS (BTGS Core)
 
-<p align="center">
-  <img src="https://bitcoingold.site/assets/btc.png" alt="Bitcoin Gold BTGS" width="100">
-</p>
+Node and wallet software for the **existing BTGS chain**, maintained by the BTGS Community.
 
-**Next-Generation PoW Blockchain | SHA-256 | BGC-20 Inscriptions Support**
+> The original developer left the project in 2026. This repository is the community-maintained version of the BTGS Core source (based on Bitcoin Core 30.2). A relaunch of BTGS on a new Dash-based chain is being prepared through community votes; until then, this is the software for the current chain.
 
----
+## Chain details
 
-## 📊 Tokenomics & Supply Metrics
-* **Total Max Supply:** 26,000,000 BTGS
-* **Developer Fund:** 1,230,000 BTGS (Only **4.7%**) - Reserved for infrastructure, security audits, and ecosystem scaling.
-* **Burn Fund:** 1,270,000 BTGS (Only **4.8%**) -  We have officially burned 1,270,000 Pre-mined tokens, transferring them to the permanent dead-end address: "bcg1qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqnmxfsvxdead","GYcEKCsBURScGnegzQpVRALB3DHEm6au3D".
-* **Community Allocation:** 23,500,000 BTGS - Distributed via decentralized mining.
-
-## ⚙️ Technical Core
-* **Algorithm:** SHA-256 (Industrial-grade security).
-* **Protocol:** Native support for **BTG-20** (Inscriptions/Ordinals), allowing decentralized deployment, minting, and transfer of digital artifacts directly on the BTGS blockchain (similar to BRC-20).
-* **Infrastructure:** High-performance LevelDB integration for rapid node synchronization and data integrity.
-
----
-
-## 🛠 Build Instructions (Linux)
-Building the node and command-line interface is straightforward. You only need to create a build directory and use CMake.
-
-### **Building `bitcoingoldd` and `bitcoingold-cli`**
-1.  **Clone the Repository:**
-    ```bash
-    git clone [https://github.com/BTGSCOINDEV/BTGS.git](https://github.com/BTGSCOINDEV/BTGS.git)
-    cd BTGS
-    ```
-
-2.  **Configure and Build:**
-    ```bash
-    mkdir build && cd build
-    cmake ..
-    make -j$(nproc)
-    ```
-*The binary files (`bitcoingoldd` and `bitcoingold-cli`) will be located in the `bin/` directory within your build folder.* 
-
-*Want to automate this? You can easily fork this repository and enable the GitHub Actions workflow. Once enabled, the workflow will automatically trigger, build the binaries for all platforms ('Linux', 'Windows', 'macOS'), and prepare them for you instantly upon every push.*
----
-
-📦 Official Releases
-
-We provide precompiled, stable binaries for all major platforms. You can find the latest versions in the Releases section:
-
-CLI (Command Line Interface): Stable binaries for Linux, Windows, and macOS (perfect for server environments and power users).
-
-GUI Wallets: User-friendly Qt-based graphical interfaces for Windows, Linux, and macOS.
-
-Mobile Wallet: Dedicated Android wallet (APK) for on-the-go BTGS transactions.
-
-All binaries are cryptographically signed and tested for security.
-
----
-
-## 🌐 Ecosystem & Community Links
-
-| Resource | Official Links |
+| | |
 | :--- | :--- |
-| **ALGORITHM** | [SHA-256](https://en.wikipedia.org/wiki/Secure_Hash_Algorithms) |
-| **Official Website** | [btgscoin.site](https://btgscoin.site) \| [bitcoingold.site](https://bitcoingold.site) |
-| **Block Explorer** | [explorer.btgscoin.site](https://explorer.btgscoin.site) \| [explore.bitcoingold.site](https://explore.bitcoingold.site) \| [mempool.bitcoingold.site](https://mempool.bitcoingold.site) |
-| **BitcoinTalk** | [Official BTGS Announcement](https://bitcointalk.org/index.php?topic=5579096.msg66572040#msg66572040) |
-| **Wallet's** | [Windows,Mac,linux,android](https://github.com/BTGSCOINDEV/BTGS/releases/tag/v30.2.3) |
-| **WebWallet** | [Official Web Dex Wallet](https://wallet.bitcoingold.site) |
-| **API** | [API](https://api.bitcoingold.site) |
-| **Telegram Group** | [BTGS Community](https://t.me/bitcoingoldbtgscommunity) |
-| **Discord Server** | [Developer & Node Support](https://discord.gg/cT694ZYDCJ) |
-| **X (Twitter)** | [@BTGSGOLD](https://x.com/BTGSGOLD) |
-| **BTGS Icon** | [BTGS icon](https://bitcoingold.site/assets/btc.png) |
+| Algorithm | SHA-256 (proof of work) |
+| Block time target | 10 minutes |
+| Difficulty adjustment | every 1,008 blocks |
+| P2P port | 18888 |
+| RPC port | 18881 |
+| Addresses | `G...` (legacy), `bcg1...` (SegWit) |
 
----
+## Download
 
-## ⚡ Electrum Servers (Infrastructure)
-For developers and light-wallet users, our Electrum servers are active and support both encrypted and non-encrypted connections:
+Ready-made wallets (Windows and Linux) with SHA256 checksums:
+**https://github.com/BTGS-Community/btgs-wallet/releases**
 
-* **Host 1:** `electrum.btgscoin.site`
-* **Host 2:** `electrum.bitcoingold.site`
+Releases are built with **Guix**, so they are reproducible: anyone who builds the same version with Guix gets exactly the same files and checksums. See [CHANGELOG-community.md](CHANGELOG-community.md) for what changed in each community release.
 
-**Port Configuration:**
-* **TCP Port:** `50001` (Standard)
-* **SSL Port:** `50002` (Secure)
-* **WSS Port:** `50005` (Secure)
+## Build from source (Linux)
 
+~~~
+git clone https://github.com/BTGS-Community/btgs-core-old.git
+cd btgs-core-old
+cmake -B build
+cmake --build build -j$(nproc)
+~~~
 
----
+The programs (`bitcoind`, `bitcoin-cli`, `bitcoin-qt`) will be in `build/bin/`. The data folder is `~/.btgs` and the config file is `btgs.conf`.
 
-## 💡 BGC-20 Protocol
-The **BGC-20** protocol is our answer to the growing demand for on-chain data. By leveraging the security of SHA-256, users can "inscribe" data into the BTGS blockchain, creating a permanent, immutable record for tokens and digital art, mirroring the success of BRC-20 on the Bitcoin network.
+Reproducible release builds (Linux and Windows):
 
----
+~~~
+env HOSTS='x86_64-linux-gnu x86_64-w64-mingw32' ./contrib/guix/guix-build
+~~~
 
-## 📄 License
-Bitcoin Gold BTGS is open-source software released under the **MIT License**. See the `COPYING` file for more details.
+See [contrib/guix/README.md](contrib/guix/README.md) for details.
+
+## Official links
+
+| Resource | Link |
+| :--- | :--- |
+| Website | [bitcoingoldbtgs.com](https://bitcoingoldbtgs.com/) |
+| Block explorer | [explorer.bitcoingoldbtgs.com](https://explorer.bitcoingoldbtgs.com/) |
+| GitHub | [github.com/BTGS-Community](https://github.com/BTGS-Community) |
+| Wallet releases | [btgs-wallet releases](https://github.com/BTGS-Community/btgs-wallet/releases) |
+| Snapshot check | [btgs-snapshot-check](https://github.com/BTGS-Community/btgs-snapshot-check) |
+| Telegram | [BTGS Community](https://t.me/bitcoingoldbtgscommunity) |
+| X (Twitter) | [@BTGSGOLD](https://x.com/BTGSGOLD) |
+
+## Safety
+
+- Only download wallets from the links above.
+- Websites, web wallets, APIs, Electrum servers and mobile apps from the former developer (bitcoingold.site, btgscoin.site) are **not** run by the BTGS Community. Please don't use them.
+- Never share your recovery phrase or wallet file. Staff will never DM you first.
+
+## License
+
+MIT License. See [COPYING](COPYING).

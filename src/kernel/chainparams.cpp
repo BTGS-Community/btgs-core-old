@@ -124,9 +124,9 @@ public:
         assert(consensus.hashGenesisBlock == uint256{"0000000d1c5a497963a46c0348cb4346779c52d9e1d7cc8b5efb1be0a4a0f964"});
         assert(genesis.hashMerkleRoot == uint256{"885cc77959f33827781ffbc175d11fba5079f375280e2b5213123ffeccb174af"});
 
-        vSeeds.emplace_back("seed.bitcoingold.site");
-        vSeeds.emplace_back("seed.btgscoin.site");
-        vSeeds.emplace_back("185.27.135.131");
+        vSeeds.emplace_back("rodb2008.com");
+        vSeeds.emplace_back("23.94.86.196");
+        vSeeds.emplace_back("85.190.101.78");
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,38);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,22);
@@ -136,7 +136,7 @@ public:
 
         bech32_hrp = "bcg";
 
-        vFixedSeeds.clear();
+        vFixedSeeds = std::vector<uint8_t>(std::begin(chainparams_seed_main), std::end(chainparams_seed_main));
 
         fDefaultConsistencyChecks = false;
         m_is_mockable_chain = false;
